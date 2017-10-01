@@ -1,0 +1,28 @@
+.Header {
+    padding:10px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.currentMonth,
+.prevMonth,
+.nextMonth {
+    flex-basis:33%;
+}
+
+.prevMonth,
+.nextMonth {
+    cursor: pointer;
+}
+
+.currentMonth {
+    font-weight:bold;
+}
+
+.prevMonth {
+    text-align: left;
+}
+
+.nextMonth {
+    text-align: right;
+}

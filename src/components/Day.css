@@ -1,0 +1,19 @@
+.Day {
+    width:12.5%;
+    flex-grow: 2;
+    background:#fafafa;
+    padding: 10px 5px;
+    border:1px solid #eee;
+    cursor: pointer;
+}
+
+.outside-month {
+    color:#ccc;
+    border-color: #fafafa   ;
+    pointer-events:none;
+}
+
+.selected {
+    background: #efefef;
+    border-color:#ccc; 
+}
