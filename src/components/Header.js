@@ -5,10 +5,6 @@ import './Header.css';
 
 class Header extends PureComponent {
 
-  nextMonth(month) {
-
-  }
-
   render() {
     const { shownMoment, onMonthChange } = this.props;
     const prevMonth = shownMoment.clone().subtract(1, 'month');

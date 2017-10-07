@@ -41,18 +41,19 @@ class Week extends Component {
   }
 
   render () {
-    const { weekDays, weekNumber, onSelectDay, selectedDay } = this.props;
+    const { today, weekDays, weekNumber, onSelectDay, selectedDay } = this.props;
     const filledWeek = this.getFullWeek(weekDays);
 
     return (
       <li>
         <ul className="Week">
-          <li className="week-number">{weekNumber}</li>
+          <li className="week-number left-col"><span className="value">{weekNumber}</span></li>
           {filledWeek.map(
             day => <Day
               selected={selectedDay
-                ? selectedDay.isSame(day.moment)
+                ? selectedDay.isSame(day.moment, 'day')
                 : false}
+              isToday={today.isSame(day.moment, 'day')}
               onSelectDay={onSelectDay}
               key={day.moment.format()}
               weekDay={ day.moment }

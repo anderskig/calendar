@@ -3,22 +3,45 @@
     flex-direction:column;
     list-style: none;
     padding:0;
-    margin:20px auto;
+    margin:0 auto;
 }
 
 .weekday-names {
+    background:#CAE4E8;
     display:flex;
     width:100%;
     list-style:none;
     padding: 0;
     margin:0 auto;
+    font-size: 1.8rem;
+
 }
 
 .weekday-name {
     overflow:hidden;
-    width:12.5%;
+    border-bottom: 1px solid #4A90E2;
+    border-right: 1px solid #4A90E2;
+    border-top: 1px solid #4A90E2;
+    text-align:center;
+    padding: 5px 0;
+}
+
+.weekday-name:not(.left-col) {
     flex-grow: 2;
-    font-size:0.7rem;
-    background:#fafafa;
-    padding: 10px 5px;
+    width:12%;
+}
+
+.week-number {
+    font-size: 1.8rem;
+    font-weight:700;
+}
+
+.calendar-cell {
+
+}
+
+.weekday-name.left-col {
+    border-left: 1px solid #4A90E2;
+    flex-basis:5%;
+    min-width:30px;
 }

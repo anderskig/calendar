@@ -1,19 +1,57 @@
 .Day {
-    width:12.5%;
     flex-grow: 2;
-    background:#fafafa;
-    padding: 10px 5px;
-    border:1px solid #eee;
     cursor: pointer;
+    font-size:5.0rem;
+    background:#fff;
+    border-bottom: 1px solid #4A90E2;
+    border-right: 1px solid #4A90E2;
+    width:12%;
+    text-align:center;
+    font-weight:300;
+    max-height:90px;
 }
 
 .outside-month {
-    color:#ccc;
-    border-color: #fafafa   ;
+    color:#a8a8a8;
     pointer-events:none;
 }
 
-.selected {
-    background: #efefef;
-    border-color:#ccc; 
+.currentBar {
+    background:#CAE4E8;
+    width:100%;
+    height:5px;
+    margin: 0 auto;
+    position:relative;
+    top:-1.5rem;
+    z-index:1;
+    visibility: hidden;
 }
+
+.Day .valueWrapper {
+    display:inline-block;
+    position:relative;
+    padding: 5px 5px 30px 5px;
+}
+
+.Day .eventDots {
+    position:relative;
+    top:-1.5rem;
+    line-height:0;
+    color:#CAE4E8;
+    font-size:6rem;
+}
+
+.Day .value {
+    position:relative;
+    z-index:5;
+}
+
+.Day.today .currentBar {
+    visibility: visible;
+}
+
+.Day.selected {
+    background: rgba(202, 228, 232, 0.3); /* #CAE4E8 */
+}
+
+

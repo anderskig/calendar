@@ -7,6 +7,15 @@
 }
 
 .week-number {
-    padding:5px;
+    background:#fff;
+    color:#a8a8a8;
+    border-bottom: 1px solid #4A90E2;
+    border-right: 1px solid #4A90E2;
+    border-left: 1px solid #4A90E2;
+    text-align:center;
+    flex-basis:5%;
     min-width:30px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }

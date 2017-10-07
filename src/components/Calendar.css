@@ -1,4 +1,10 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Quicksand:300,400,700');
+
 .Calendar {
-    margin: 30% auto;
-    max-width:80%;
+    font-family: 'Quicksand', sans-serif;;
+    margin: 0 auto;
+    width:80%;
+    max-width:1000px;
 }
+

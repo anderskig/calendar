@@ -8,16 +8,25 @@ import './Day.css';
 
 class Day extends Component {
     render() {
-        const { weekDay, inMonth, onSelectDay, selected } = this.props;
+        const { isToday, weekDay, inMonth, onSelectDay, selected } = this.props;
         const classnames = cx({
             'Day': true,
+            'calendar-cell': true,
             'outside-month': !inMonth,
-            selected
+            selected,
+            'today': isToday
         });
+        const events = [];
 
         return (
             <li onClick={() => onSelectDay(weekDay)} className={classnames}>
-                {weekDay.format('D')}
+                <div className="valueWrapper">
+                    <div className="value">{weekDay.format('D')}</div>
+                    <div className="currentBar"></div>
+                    <div className="eventDots">
+                        {events.map(() => <span className="eventDot">.</span>)}
+                    </div>
+                </div>
             </li>
         );
     }

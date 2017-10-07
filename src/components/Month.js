@@ -14,6 +14,7 @@ class Month extends Component {
 
     /* Explicitly bind class functions to 'this' */
     this.createWeekRange = this.createWeekRange.bind(this);
+    this.getWeekDayNames = this.getWeekDayNames.bind(this);
   }
 
   createWeekRange(shownMoment) {
@@ -40,22 +41,42 @@ class Month extends Component {
     return weeks;
   }
 
+  getWeekDayNames(localeData) {
+    const weekDays = localeData.weekdays();
+    const firstDayofWeek = localeData.firstDayOfWeek();
+    if (firstDayofWeek === 0) {
+      return weekDays;
+    }
+    const shiftedWeekDays = weekDays.map((value, index) => {
+      const shifted = index + firstDayofWeek;
+      if (shifted < 7) {
+        return weekDays[shifted];
+      }
+
+      return weekDays[shifted - 7];
+    });
+
+    return shiftedWeekDays;
+  }
+
   render() {
-    const { shownMoment, onSelectDay, selectedDay, localeData } = this.props;
+    const { today, shownMoment, onSelectDay, selectedDay, localeData } = this.props;
     const weekRange = this.createWeekRange(shownMoment);
+    const weekDayNames = this.getWeekDayNames(localeData);
 
     return (
       <ul className="Month">
         <li>
           <ul className="weekday-names">
-            <li className="week-number">V.</li>
-            {localeData.weekdays().map(
-              weekDay => <li key={weekDay} className="weekday-name">{weekDay}</li>)
+            <li className="weekday-name calendar-cell left-col">V.</li>
+            {weekDayNames.map(
+              weekDay => <li key={weekDay} className="calendar-cell weekday-name">{weekDay.toUpperCase()}</li>)
             }
           </ul>
         </li>
         { weekRange.keySeq().map(
             key => <Week
+              today={today}
               selectedDay={selectedDay}
               onSelectDay={onSelectDay}
               key={key}
