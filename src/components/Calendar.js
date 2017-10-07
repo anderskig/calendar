@@ -15,6 +15,8 @@ import './Calendar.css';
 const moment = extendMoment(Moment);
 moment.locale('sv');
 
+const storageItemStr = 'photoWallCalendarState';
+
 class Calendar extends Component {
 
   constructor(props) {
@@ -24,13 +26,27 @@ class Calendar extends Component {
     this.handleSelectDay = this.handleSelectDay.bind(this);
     this.handleMonthChange = this.handleMonthChange.bind(this);
 
-    /* Set initial state */
-    this.state = {
-      'currentMonth': 2,
-      'currentYear': 2017,
-      'events': [],
-      'selectedDay': null
-    };
+
+    try {
+
+      /* Try to get state from localstorage */
+      const storedState = JSON.parse(localStorage.getItem(storageItemStr));
+      this.state = {
+        'currentMonth': parseInt(storedState.currentMonth, 10),
+        'currentYear': parseInt(storedState.currentYear, 10),
+        'events': storedState.events,
+        'selectedDay': moment(storedState.selectedDay)
+      };
+    } catch (error) {
+
+      /* Set initial state */
+      this.state = {
+        'currentMonth': null,
+        'currentYear': null,
+        'events': [],
+        'selectedDay': null
+      };
+    }
   }
 
   handleSelectDay(newMoment) {
@@ -44,6 +60,12 @@ class Calendar extends Component {
      });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state) {
+      localStorage.setItem(storageItemStr, JSON.stringify(this.state));
+    }
+  }
+
   render () {
     const { currentMonth, currentYear, selectedDay } = this.state;
 
@@ -52,12 +74,18 @@ class Calendar extends Component {
       'year': currentYear
     });
 
+    const today = moment()
+      .hour(0)
+      .minute(0)
+      .second(0);
+
     return (
       <section className="Calendar">
           <Header
             onMonthChange={this.handleMonthChange}
             shownMoment={shownMoment}/>
           <Month
+            today={today}
             localeData={moment.localeData()}
             shownMoment={shownMoment}
             selectedDay={selectedDay}
