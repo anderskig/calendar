@@ -8,12 +8,12 @@
 
 .weekday-names {
     background:#CAE4E8;
-    display:flex;
     width:100%;
     list-style:none;
     padding: 0;
     margin:0 auto;
     font-size: 1.8rem;
+    display:none;
 
 }
 
@@ -34,14 +34,22 @@
 .week-number {
     font-size: 1.8rem;
     font-weight:700;
-}
-
-.calendar-cell {
-
+    display:none;
 }
 
 .weekday-name.left-col {
     border-left: 1px solid #4A90E2;
     flex-basis:5%;
     min-width:30px;
+}
+
+/* Non mobile overrides */
+
+@media screen and (min-width:450px) {
+    .week-number {
+        display: flex;
+    }
+    .weekday-names {
+        display: flex;
+    }
 }

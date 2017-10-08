@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Moment from 'moment';
 import 'moment/locale/sv';
 import { extendMoment } from 'moment-range';
+import { Map } from 'immutable';
 
 /* Components */
 import Month from './Month';
@@ -25,6 +26,7 @@ class Calendar extends Component {
     /* Explicitly bind class functions to 'this' */
     this.handleSelectDay = this.handleSelectDay.bind(this);
     this.handleMonthChange = this.handleMonthChange.bind(this);
+    this.getEvents = this.getEvents.bind(this);
 
 
     try {
@@ -34,7 +36,9 @@ class Calendar extends Component {
       this.state = {
         'currentMonth': parseInt(storedState.currentMonth, 10),
         'currentYear': parseInt(storedState.currentYear, 10),
-        'events': storedState.events,
+        'events': storedState.events
+          ? Map(storedState.events)
+          : Map(),
         'selectedDay': moment(storedState.selectedDay)
       };
     } catch (error) {
@@ -43,7 +47,7 @@ class Calendar extends Component {
       this.state = {
         'currentMonth': null,
         'currentYear': null,
-        'events': [],
+        'events': Map(),
         'selectedDay': null
       };
     }
@@ -53,7 +57,10 @@ class Calendar extends Component {
     this.setState({ 'selectedDay': newMoment });
   }
 
-  handleMonthChange(newMonth) {
+  handleMonthChange(month, direction = null) {
+    const newMonth = direction
+      ? month.clone().add(direction, 'month')
+      : month;
     this.setState({
       'currentMonth': newMonth.month(),
       'currentYear': newMonth.year()
@@ -64,6 +71,15 @@ class Calendar extends Component {
     if (prevState !== this.state) {
       localStorage.setItem(storageItemStr, JSON.stringify(this.state));
     }
+  }
+
+  getEvents(currentMonth, currentYear) {
+      const eventsByYear = this.state.events.get(currentYear);
+      if (eventsByYear) {
+        return eventsByYear.get(currentMonth);
+      }
+
+      return null;
   }
 
   render () {
@@ -85,7 +101,9 @@ class Calendar extends Component {
             onMonthChange={this.handleMonthChange}
             shownMoment={shownMoment}/>
           <Month
+            events={this.getEvents(currentMonth, currentYear)}
             today={today}
+            onMonthChange={this.handleMonthChange}
             localeData={moment.localeData()}
             shownMoment={shownMoment}
             selectedDay={selectedDay}

@@ -3,8 +3,14 @@
 
 .Calendar {
     font-family: 'Quicksand', sans-serif;;
-    margin: 0 auto;
-    width:80%;
-    max-width:1000px;
+    margin: 0 1rem;
 }
 
+/* Non mobile overrides */
+
+@media screen and (min-width:450px) {
+    .Calendar {
+        margin: 0 auto;
+        max-width:1000px;
+    }
+}

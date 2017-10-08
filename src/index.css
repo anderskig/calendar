@@ -1,7 +1,8 @@
+
 html,
 body {
   height:100%;
-  font-size: 62.5%; /* Makes rem sizing convenient as rem size is px size/10 */
+  font-size: 62.5%; 
 }
 
 body {

@@ -1,5 +1,6 @@
 .Week {
     display:flex;
+    flex-direction: column;
     width:100%;
     list-style:none;
     padding: 0;
@@ -18,4 +19,12 @@
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Non mobile overrides */
+
+@media screen and (min-width:450px) {
+    .Week {
+        flex-direction: row;
+    }
 }

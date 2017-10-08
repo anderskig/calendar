@@ -48,16 +48,19 @@ class Week extends Component {
       <li>
         <ul className="Week">
           <li className="week-number left-col"><span className="value">{weekNumber}</span></li>
-          {filledWeek.map(
-            day => <Day
-              selected={selectedDay
-                ? selectedDay.isSame(day.moment, 'day')
-                : false}
-              isToday={today.isSame(day.moment, 'day')}
-              onSelectDay={onSelectDay}
-              key={day.moment.format()}
-              weekDay={ day.moment }
-              inMonth={day.inMonth} />)}
+            {filledWeek.map(
+              day => <Day
+                events={this.props.events
+                  ? this.props.events.get(day.moment.day())
+                  : null}
+                selected={selectedDay
+                  ? selectedDay.isSame(day.moment, 'day')
+                  : false}
+                isToday={today.isSame(day.moment, 'day')}
+                onSelectDay={onSelectDay}
+                key={day.moment.format()}
+                weekDay={ day.moment }
+                inMonth={day.inMonth} />)}
         </ul>
       </li>
     );

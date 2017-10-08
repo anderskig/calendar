@@ -1,19 +1,23 @@
 .Day {
     flex-grow: 2;
+    display:flex;
+    align-items:baseline;
     cursor: pointer;
-    font-size:5.0rem;
     background:#fff;
-    border-bottom: 1px solid #4A90E2;
-    border-right: 1px solid #4A90E2;
-    width:12%;
+    border: 1px solid #4A90E2;
     text-align:center;
     font-weight:300;
     max-height:90px;
+    padding: 0 1.5rem;
+}
+
+.Day:not(:first-of-type) {
+    border-top: none;
 }
 
 .outside-month {
+    display:none;
     color:#a8a8a8;
-    pointer-events:none;
 }
 
 .currentBar {
@@ -22,36 +26,104 @@
     height:5px;
     margin: 0 auto;
     position:relative;
-    top:-1.5rem;
+    top:-1.1rem;
     z-index:1;
     visibility: hidden;
 }
 
+.Day .value-col {
+    width:15%;
+    position:relative;
+    text-align:left;
+}
+
 .Day .valueWrapper {
     display:inline-block;
-    position:relative;
-    padding: 5px 5px 30px 5px;
 }
 
 .Day .eventDots {
-    position:relative;
-    top:-1.5rem;
-    line-height:0;
     color:#CAE4E8;
     font-size:6rem;
+    line-height:0;
+    flex-grow:2;
+    text-align:right;
+}
+
+.Day .day-name {
+    font-size: 1.6rem;
+    font-weight:400;
 }
 
 .Day .value {
     position:relative;
     z-index:5;
+    font-size: 3.5rem;
 }
 
 .Day.today .currentBar {
     visibility: visible;
 }
 
+.Day.first-of-month {
+    border-top: 1px solid #4A90E2;
+}
+
+.Day.sunday .value {
+    color:#D0021B;
+}
+
+.Day.sunday.outside-month .value {
+    color: rgba(208, 2, 27, 0.3); /* #D0021B */
+}
+
 .Day.selected {
     background: rgba(202, 228, 232, 0.3); /* #CAE4E8 */
 }
 
+/* Non mobile overrides */
 
+@media screen and (min-width:450px) {
+    .Day {
+        width:12%;
+        display:flex;
+        flex-direction:column;
+        border-left: none;
+        padding: 0;
+    }
+
+    .Day .value-col {
+        width:100%;
+        text-align:center;
+    }
+
+    .Day .value {
+        font-size:5.0rem;
+    }
+
+    .Day .valueWrapper {
+        padding: 5px 5px 30px 5px;
+    }
+
+    .Day .currentBar {
+        top:-1.5rem;
+    }
+
+    .Day .day-name {
+        display:none;
+    }
+
+    .Day.first-of-month {
+        border-top: none;
+    }
+
+    .Day.outside-month {
+        display:block;
+    }
+
+    .Day .eventDots {
+        width:100%;
+        text-align:center;
+        position:relative;
+        top:-4.5rem;
+    }
+}
