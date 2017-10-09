@@ -71,11 +71,9 @@ class Month extends Component {
   }
 
   render() {
-    const { today, shownMoment, onSelectDay, selectedDay, localeData } = this.props;
+    const { events, today, shownMoment, onSelectDay, selectedDay, localeData } = this.props;
     const weekRange = this.createWeekRange(shownMoment);
     const weekDayNames = this.getWeekDayNames(localeData);
-
-
 
     return (
       <Swipe onSwipeMove={this.onSwipeMove}>
@@ -90,9 +88,7 @@ class Month extends Component {
           </li>
           { weekRange.keySeq().map(
               key => <Week
-                events={this.props.events
-                  ? this.props.events.get(key)
-                  : null}
+                events={events}
                 today={today}
                 selectedDay={selectedDay}
                 onSelectDay={onSelectDay}

@@ -2,11 +2,27 @@
 html,
 body {
   height:100%;
-  font-size: 62.5%; 
+  font-size: 62.5%; /* This makes rem sizing similar to px. I.e 2.2rem equals 22px */
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+/* Non mobile overrides */
+
+@media screen and (min-width:450px) {
+  html,
+  body  {
+    font-size: 40%;
+  }
+}
+
+@media screen and (min-width:650px) {
+  html,
+  body  {
+    font-size: 62.5%;
+  }
 }

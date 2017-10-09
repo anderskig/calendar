@@ -20,6 +20,13 @@ class Day extends Component {
             'today': isToday
         });
 
+        const dayEvents = events.getIn([
+            weekDay.format('YYYY'),
+            weekDay.format('M'),
+            weekDay.format('w'),
+            weekDay.format('D')
+        ]);
+
         return (
             <li onClick={() => onSelectDay(weekDay)} className={classnames}>
                 <div className="value-col">
@@ -32,8 +39,8 @@ class Day extends Component {
                     {weekDay.format('dddd').toUpperCase()}
                 </div>
                 <div className="eventDots">
-                    {events
-                        ? events.map(() => <span className="eventDot">.</span>)
+                    {dayEvents
+                        ? dayEvents.keySeq().map(key => <span key={key} className="eventDot">.</span>)
                         : null}
                 </div>
             </li>

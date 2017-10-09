@@ -8,9 +8,9 @@
 
 /* Non mobile overrides */
 
-@media screen and (min-width:450px) {
+@media screen and (min-width:1000px) {
     .Calendar {
         margin: 0 auto;
-        max-width:1000px;
+        width:1000px;
     }
 }

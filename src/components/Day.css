@@ -33,6 +33,7 @@
 
 .Day .value-col {
     width:15%;
+    min-width:4rem;
     position:relative;
     text-align:left;
 }
