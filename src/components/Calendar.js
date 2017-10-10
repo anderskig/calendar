@@ -15,12 +15,23 @@ import AddEventForm from './AddEventForm';
 /* Styles */
 import './Calendar.css';
 
+/* Extend moment with range functionality */
 const moment = extendMoment(Moment);
-moment.locale('sv');
 
-const storageItemStr = 'photoWallCalendarState';
+/* Setup moment with custom locale that combines swedish calendar with the needed English strings */
+moment.locale('en');
+moment.defineLocale('sv-en-strings', {
+  'months': moment.months(),
+  'parentLocale': 'sv',
+  'weekdays': moment.weekdays()
+});
+moment.locale('sv-en-strings');
 
 class Calendar extends Component {
+
+  static get STORAGE_ITEM_STR() {
+    return 'photoWallCalendarState';
+  }
 
   constructor(props) {
     super(props);
@@ -34,7 +45,7 @@ class Calendar extends Component {
     try {
 
       /* Try to get state from localstorage */
-      const storedState = JSON.parse(localStorage.getItem(storageItemStr));
+      const storedState = JSON.parse(localStorage.getItem(Calendar.STORAGE_ITEM_STR));
 
       this.state = {
         'currentMonth': storedState.currentMonth
@@ -85,7 +96,7 @@ class Calendar extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState !== this.state) {
-      localStorage.setItem(storageItemStr, JSON.stringify(this.state));
+      localStorage.setItem(Calendar.STORAGE_ITEM_STR, JSON.stringify(this.state));
     }
   }
 
