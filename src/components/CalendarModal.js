@@ -4,12 +4,17 @@ import React, { Component } from 'react';
 import './CalendarModal.css';
 
 class CalendarModal extends Component {
-  render() {
-    const { visible, onClose } = this.props;
 
-    if (!visible) {
-      return null;
-    }
+  componentDidMount() {
+    document.body.classList.add('noscroll');
+  }
+
+  componentWillUnmount() {
+    document.body.classList.remove('noscroll');
+  }
+
+  render() {
+    const { onClose } = this.props;
 
     return (
       <div className="CalendarModal">

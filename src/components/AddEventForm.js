@@ -15,7 +15,9 @@ class AddEventForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const eventText = event.currentTarget.querySelector('#event-text').value;
+    const textBox = event.currentTarget.querySelector('#event-text');
+    const eventText = textBox.value;
+    textBox.value = '';
     this.props.onAddEvent(eventText, this.props.selectedDay);
   }
 
@@ -34,11 +36,16 @@ class AddEventForm extends Component {
         <div className="date">
           {selectedDay.format('D MMMM YYYY')}
         </div>
-        <ul className="events">
+
           {dayEvents
-          ? dayEvents.map((event, key) => <li key={key}>{event}</li>)
+          ? <div className="events">
+            Events
+            <ul className="eventList">
+              {dayEvents.map((event, key) => <li key={key}>{event}</li>)}
+            </ul>
+          </div>
           : null}
-        </ul>
+        <label for="event-text">Add new event</label>
         <input id="event-text" type="text"/>
         <div className="buttonRow">
           <button type="submit">Add Event</button>

@@ -138,14 +138,15 @@ class Calendar extends Component {
             selectedDay={selectedDay}
             onSelectDay={this.handleSelectDay}
             onChangeDay={this.handleChangeDay} />
-          <CalendarModal
-            visible={this.state.modalVisible}
-            onClose={this.closeModal}>
-            <AddEventForm
-              onAddEvent={this.addEvent}
-              events={this.state.events}
-              selectedDay={selectedDay} />
-          </CalendarModal>
+          {this.state.modalVisible
+          ? <CalendarModal
+              onClose={this.closeModal}>
+              <AddEventForm
+                onAddEvent={this.addEvent}
+                events={this.state.events}
+                selectedDay={selectedDay} />
+            </CalendarModal>
+          : null}
       </section>
     );
   }
