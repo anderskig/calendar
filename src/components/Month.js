@@ -61,9 +61,10 @@ class Month extends Component {
     return shiftedWeekDays;
   }
 
-  onSwipeMove(position, event) {
-    console.log(`Moved ${position.x} pixels horizontally`, event);
-    console.log(`Moved ${position.y} pixels vertically`, event);
+  onSwipeMove(position) {
+    if (Math.abs(position.x) < 100) {
+      return;
+    }
     const direction = position.x > 0
       ? 1
       : -1;
