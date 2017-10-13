@@ -17,6 +17,9 @@ class AddEventForm extends Component {
     event.preventDefault();
     const textBox = event.currentTarget.querySelector('#event-text');
     const eventText = textBox.value;
+    if (eventText === '') {
+      return;
+    }
     textBox.value = '';
     this.props.onAddEvent(eventText, this.props.selectedDay);
   }
@@ -48,7 +51,7 @@ class AddEventForm extends Component {
         <label for="event-text">Add new event</label>
         <input id="event-text" type="text"/>
         <div className="buttonRow">
-          <button type="submit">Add Event</button>
+          <button type="submit">Add</button>
         </div>
       </form>
     );

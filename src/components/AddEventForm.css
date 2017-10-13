@@ -1,5 +1,5 @@
 .AddEventForm {
-    min-width: 300px;
+    min-width: 280px;
 }
 
 .date {
@@ -41,7 +41,7 @@
 
 /* General form styling, would be moved elsewhere if more than one form existed */
 input {
-    margin: 1rem 0;
+    margin: 0 0 1rem 0;
     width: 100%;
     border: 1px solid #ccc;
     font-size:1.6rem;
