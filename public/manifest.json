@@ -3,13 +3,13 @@
   "name": "Photowall Calendar",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "24x24",
+      "src": "favicon.png",
+      "sizes": "256x256",
       "type": "image/png"
     }
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#4A90E2",
   "background_color": "#ffffff"
 }
