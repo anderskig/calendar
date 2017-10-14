@@ -1,10 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Map } from 'immutable';
+import Moment from 'moment';
 
 /* Styling */
 import './AddEventForm.css';
 
-class AddEventForm extends Component {
+/**
+ * Form component, lets user add new events to selected day, and also displays the added
+ * events for selected day.
+*/
+class AddEventForm extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -13,6 +19,11 @@ class AddEventForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  /**
+   * Catch submit of form and instead of postback call the state changing function to add event.
+   * @param {SyntheticEvent} event the 'syntheic' event triggered by React on submit.
+   * @returns {void}
+   */
   handleSubmit(event) {
     event.preventDefault();
     const textBox = event.currentTarget.querySelector('#event-text');
@@ -48,7 +59,7 @@ class AddEventForm extends Component {
             </ul>
           </div>
           : null}
-        <label for="event-text">Add new event</label>
+        <label htmlFor="event-text">Add new event</label>
         <input id="event-text" type="text"/>
         <div className="buttonRow">
           <button type="submit">Add</button>
@@ -58,6 +69,10 @@ class AddEventForm extends Component {
   }
 }
 
-AddEventForm.propTypes = { 'onAddEvent': PropTypes.func.isRequired }; 
+AddEventForm.propTypes = {
+  'events': PropTypes.instanceOf(Map).isRequired,
+  'onAddEvent': PropTypes.func.isRequired,
+  'selectedDay': PropTypes.instanceOf(Moment).isRequired
+};
 
 export default AddEventForm;

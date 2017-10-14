@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+/* Third party libraries */
+import Swipe from 'react-easy-swipe';
+import Moment from 'moment';
+import { Map, List } from 'immutable';
 
 /* Components */
 import Week from './Week';
-import { Map, List } from 'immutable';
-import Swipe from 'react-easy-swipe';
 
 /* Styling */
 import './Month.css';
 
+/**
+ * Component responsible for rendering the month board (or list in mobile)
+ */ 
 class Month extends Component {
 
   constructor(props) {
@@ -19,6 +26,11 @@ class Month extends Component {
     this.onSwipeMove = this.onSwipeMove.bind(this);
   }
 
+  /**
+   * Create a Map with all days within a month, split by week.
+   * @param {Moment} shownMoment Moment object defining the year and month currently shown in Calendar
+   * @returns {Map} Immutable Map with days for current year and month split into a key for each week.
+   */
   createWeekRange(shownMoment) {
     const dateRange = shownMoment.range('month');
     const dateArray = Array.from(dateRange.by('day'));
@@ -43,6 +55,11 @@ class Month extends Component {
     return weeks;
   }
 
+  /**
+   * Get the weekday name strings.
+   * @param {Object} localeData a Moment localeData Object
+   * @return {Array} of weekday names as strings, in correct order.
+   */
   getWeekDayNames(localeData) {
     const weekDays = localeData.weekdays();
     const firstDayofWeek = localeData.firstDayOfWeek();
@@ -61,6 +78,11 @@ class Month extends Component {
     return shiftedWeekDays;
   }
 
+  /**
+   * Handle swipe event.
+   * @param {Object} position Position object defining user swipe x and y lenghts.
+   * @returns {void}
+   */
   onSwipeMove(position) {
     if (Math.abs(position.x) < 100) {
       return;
@@ -103,5 +125,15 @@ class Month extends Component {
     );
   }
 }
+
+Month.propTypes = {
+  'events': PropTypes.instanceOf(Map).isRequired,
+  // Moment localeData object.
+  'localeData': PropTypes.object.isRequired,
+  'onMonthChange': PropTypes.func.isRequired,
+  'onSelectDay': PropTypes.func.isRequired,
+  'selectedDay': PropTypes.instanceOf(Moment).isRequired,
+  'today': PropTypes.instanceOf(Moment).isRequired
+};
 
 export default Month;

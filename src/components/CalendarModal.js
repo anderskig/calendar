@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 /* Styling */
 import './CalendarModal.css';
 
-class CalendarModal extends Component {
+/**
+ * General use modal which creates a centered fixed position modal with greyed out backdrop
+ * and populates the modal with its JSX children.
+ */
+class CalendarModal extends PureComponent {
 
   componentDidMount() {
     document.body.classList.add('noscroll');
@@ -30,5 +35,7 @@ class CalendarModal extends Component {
     );
   }
 }
+
+CalendarModal.propTypes = { 'onClose': PropTypes.func.isRequired };
 
 export default CalendarModal;

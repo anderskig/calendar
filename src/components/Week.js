@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
+/* Third party libraries */
+import Moment from 'moment';
+import { Map, List } from 'immutable';
+
+/* Components */
 import Day from './Day';
-
-import { List } from 'immutable';
 
 /* Styling */
 import './Week.css';
 
+/**
+ * Component responsible for rendering a specific week
+ */
 class Week extends Component {
 
   constructor(props) {
@@ -16,6 +23,12 @@ class Week extends Component {
     this.getFullWeek = this.getFullWeek.bind(this);
   }
 
+  /**
+   * Complete any week that doesn't contain 7 days within current month
+   * with the days of the week outside of current month.
+   * @param {List} weekDays with the days of the week in current month.
+   * @returns {List} of 7 days.
+   */
   getFullWeek (weekDays) {
     const daysDiff = 7 - weekDays.size;
     if (!daysDiff) {
@@ -51,7 +64,7 @@ class Week extends Component {
             {filledWeek.map(
               day => <Day
                 events={events}
-                selected={selectedDay
+                isSelected={selectedDay
                   ? selectedDay.isSame(day.moment, 'day')
                   : false}
                 isToday={today.isSame(day.moment, 'day')}
@@ -64,5 +77,14 @@ class Week extends Component {
     );
   }
 }
+
+Week.propTypes = {
+  'events': PropTypes.instanceOf(Map).isRequired,
+  'onSelectDay': PropTypes.func.isRequired,
+  'selectedDay': PropTypes.instanceOf(Moment).isRequired,
+  'today': PropTypes.instanceOf(Moment).isRequired,
+  'weekDays': PropTypes.instanceOf(List).isRequired,
+  'weekNumber': PropTypes.string.isRequired
+};
 
 export default Week;

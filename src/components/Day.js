@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 /* Thrid party libraries */
 import cx from 'classnames';
+import { Map } from 'immutable';
+import Moment from 'moment';
 
 /* Styling */
 import './Day.css';
 
+/**
+ * Component responsible for rendering the individual day cells.
+ */
 class Day extends Component {
     render() {
-        const { events, isToday, weekDay, inMonth, onSelectDay, selected } = this.props;
+        const { events, isToday, weekDay, inMonth, onSelectDay, isSelected } = this.props;
         const dayNumber = weekDay.format('D');
         const classnames = cx({
             'Day': true,
             'calendar-cell': true,
             'first-of-month': dayNumber === '1',
             'outside-month': !inMonth,
-            selected,
+            'selected': isSelected,
             'sunday': weekDay.day() === 0,
             'today': isToday
         });
@@ -47,5 +53,14 @@ class Day extends Component {
         );
     }
 }
+
+Day.propTypes = {
+    'events': PropTypes.instanceOf(Map).isRequired,
+    'inMonth': PropTypes.bool,
+    'isRequired': PropTypes.bool,
+    'isSelected': PropTypes.bool,
+    'onSelectDay': PropTypes.func.isRequired,
+    'weekDay': PropTypes.instanceOf(Moment).isRequired
+};
 
 export default Day;

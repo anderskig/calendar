@@ -13,6 +13,8 @@ body {
 
 /* Non mobile overrides */
 
+/* Simplest way to not have broken layout between around 450px to 650px is to set
+   base font size a bit smaller as app uses rem sizing */
 @media screen and (min-width:450px) {
   html,
   body  {
