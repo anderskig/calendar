@@ -27,8 +27,17 @@
 .prevMonth,
 .nextMonth {
     color: #a8a8a8;
-    cursor: pointer;
     font-size: 2.8rem;
+}
+
+.changeMonthWrapper {
+    display:inline;
+    cursor: pointer;
+    transition: color 250ms;
+}
+
+.changeMonthWrapper:hover {
+    color: #000;
 }
 
 .nextMonth .monthName,
