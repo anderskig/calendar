@@ -50,16 +50,22 @@ class AddEventForm extends PureComponent {
         <div className="date">
           {selectedDay.format('D MMMM YYYY')}
         </div>
-
+        <div className="events">
           {dayEvents
-          ? <div className="events">
-            Events
-            <ul className="eventList">
+          ? [
+            'Your Events',
+            <ul key="eventList" className="eventList">
               {dayEvents.map((event, key) => <li key={key}>{event}</li>)}
             </ul>
-          </div>
-          : null}
-        <label htmlFor="event-text">Add new event</label>
+            ]
+          : <span className="noEvents">No events today.</span>}
+        </div>
+        <label htmlFor="event-text">
+        {!dayEvents
+          ? 'Add one!'
+          : 'Another one?'
+        }
+        </label>
         <input id="event-text" type="text"/>
         <div className="buttonRow">
           <button type="submit">Add</button>
