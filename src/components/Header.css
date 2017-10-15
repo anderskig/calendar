@@ -34,6 +34,7 @@
     display:inline;
     cursor: pointer;
     transition: color 250ms;
+    min-width:60px;
 }
 
 .changeMonthWrapper:hover {
