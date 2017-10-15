@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 /* Third party libraries */
@@ -15,7 +15,7 @@ import './Month.css';
 /**
  * Component responsible for rendering the month board (or list in mobile)
  */ 
-class Month extends Component {
+class Month extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -88,8 +88,8 @@ class Month extends Component {
       return;
     }
     const direction = position.x > 0
-      ? 1
-      : -1;
+      ? -1
+      : 1;
     this.props.onMonthChange(this.props.shownMoment, direction);
   }
 
@@ -132,7 +132,7 @@ Month.propTypes = {
   'localeData': PropTypes.object.isRequired,
   'onMonthChange': PropTypes.func.isRequired,
   'onSelectDay': PropTypes.func.isRequired,
-  'selectedDay': PropTypes.instanceOf(Moment).isRequired,
+  'selectedDay': PropTypes.instanceOf(Moment),
   'today': PropTypes.instanceOf(Moment).isRequired
 };
 
