@@ -9,6 +9,7 @@
     font-weight:300;
     max-height:90px;
     padding: 0 1.5rem;
+    overflow: hidden;
 }
 
 .Day:not(:first-of-type) {
@@ -48,6 +49,13 @@
     line-height:0;
     flex-grow:2;
     text-align:right;
+    font-family:'Playfair Display', serif;
+}
+
+.Day .eventDots .toManyEvents {
+    font-family:'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size:1.6rem;
 }
 
 .Day .day-name {

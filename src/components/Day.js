@@ -33,6 +33,12 @@ class Day extends PureComponent {
             weekDay.format('D')
         ]);
 
+        const maxNoEventDots = 6;
+
+        const toManyEvents = dayEvents
+            ? dayEvents.size > maxNoEventDots
+            : false;
+
         return (
             <li onClick={() => onSelectDay(weekDay)} className={classnames}>
                 <div className="value-col">
@@ -45,8 +51,11 @@ class Day extends PureComponent {
                     {weekDay.format('dddd').toUpperCase()}
                 </div>
                 <div className="eventDots">
-                    {dayEvents
+                    {dayEvents && !toManyEvents
                         ? dayEvents.keySeq().map(key => <span key={key} className="eventDot">.</span>)
+                        : null}
+                    {toManyEvents
+                        ? <span className="toManyEvents">> {maxNoEventDots}</span>
                         : null}
                 </div>
             </li>
