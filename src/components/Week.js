@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 /* Third party libraries */
@@ -14,7 +14,7 @@ import './Week.css';
 /**
  * Component responsible for rendering a specific week
  */
-class Week extends Component {
+class Week extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -81,7 +81,7 @@ class Week extends Component {
 Week.propTypes = {
   'events': PropTypes.instanceOf(Map).isRequired,
   'onSelectDay': PropTypes.func.isRequired,
-  'selectedDay': PropTypes.instanceOf(Moment).isRequired,
+  'selectedDay': PropTypes.instanceOf(Moment),
   'today': PropTypes.instanceOf(Moment).isRequired,
   'weekDays': PropTypes.instanceOf(List).isRequired,
   'weekNumber': PropTypes.string.isRequired

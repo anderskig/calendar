@@ -20,7 +20,7 @@ class Header extends PureComponent {
     return (
       <section className="Header">
         <div className="prevMonth">
-          <div className="changeMonthWrapper" onClick={() => onMonthChange(nextMonth)}>
+          <div className="changeMonthWrapper" onClick={() => onMonthChange(prevMonth)}>
             <span className="arrow">⟨</span>
             <span className="monthName">{prevMonth.format('MMMM')}</span>
           </div>

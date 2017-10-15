@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 /* Thrid party libraries */
@@ -12,7 +12,7 @@ import './Day.css';
 /**
  * Component responsible for rendering the individual day cells.
  */
-class Day extends Component {
+class Day extends PureComponent {
     render() {
         const { events, isToday, weekDay, inMonth, onSelectDay, isSelected } = this.props;
         const dayNumber = weekDay.format('D');
