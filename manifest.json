@@ -1,0 +1,16 @@
+{
+  "short_name": "Calendar",
+  "name": "Photowall Calendar",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#CAE4E8",
+  "background_color": "#ffffff"
+}
