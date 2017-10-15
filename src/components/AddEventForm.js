@@ -66,7 +66,7 @@ class AddEventForm extends PureComponent {
           : 'Another one?'
         }
         </label>
-        <input id="event-text" type="text"/>
+        <input autoFocus id="event-text" type="text"/>
         <div className="buttonRow">
           <button type="submit">Add</button>
         </div>
